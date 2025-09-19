@@ -11,7 +11,7 @@ html, body {
 }
 
 body {
-    cursor: url('./public/images/cursor1.png'), auto;
+    cursor: url('/images/cursor1.png'), auto;
 }
 
 /* Interactive elements */
