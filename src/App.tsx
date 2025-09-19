@@ -96,7 +96,7 @@ function App() {
       {/* 🎵 Audio Element */}
       <audio
         ref={audioRef}
-        src="/audio/HappyBirthday.mp3"
+        src="/audio/audio1.mp3"
         loop
         preload="auto"
         onError={() => console.log("❌ Audio gagal dimuat")}
