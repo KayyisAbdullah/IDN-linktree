@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ensure custom cursor works with MouseParticles */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+    cursor: url('./public/images/cursor1.png'), auto;
+}
+
+/* Interactive elements */
+a,
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+select,
+.btn,
+.clickable,
+.cursor-pointer,
+[onclick] {
+    cursor: url('/images/cursor2.png'), pointer !important;
+}
+
+canvas {
+  pointer-events: none !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
