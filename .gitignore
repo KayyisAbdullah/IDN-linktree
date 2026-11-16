@@ -1,5 +1,35 @@
+﻿# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+coverage/
+*.tsbuildinfo
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+secrets/
+/secrets.*
+
+# Local tool and deployment caches
+.bolt/
+.firebase/
+.firebase-debug.log
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
 # Logs
-logs
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -7,21 +37,19 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Local-only files
 *.local
+.DS_Store
+Thumbs.db
 
-# Editor directories and files
+# Editor settings
 .vscode/*
 !.vscode/extensions.json
-.idea
-.DS_Store
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-.env
-
-.tes
+tes.txt
+kayyis.txt

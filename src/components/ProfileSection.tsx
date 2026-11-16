@@ -21,7 +21,7 @@ const ProfileSection: React.FC = () => (
       </div>
       <div className="min-w-0">
         <h1 className="text-xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-white sm:text-2xl">
-          Kayyis Abdullah<br />Al Hadi
+          Kayyis Abdullah Al Hadi
         </h1>
         <p className="mt-2 text-sm font-medium leading-relaxed text-slate-600 dark:text-slate-300">
           UI/UX enthusiast <span className="text-teal-600 dark:text-teal-400">·</span> creative developer
