@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Sun, Moon, Volume2, VolumeX } from 'lucide-react';
 
 interface HeaderProps {
@@ -8,57 +8,21 @@ interface HeaderProps {
   onToggleMusic: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ isDark, onToggleTheme, isMusicPlaying, onToggleMusic }) => {
-  return (
-    <header className="flex justify-between items-center p-4 pt-6">
-      <div className="flex items-center gap-1">
-        <img
-          src="/images/logo.png"
-          alt="Logo VS"
-          className="w-10 h-20 rounded-full object-cover ml-2"
-        />
-        <span className="font-semibold light:text-gray-900 dark:text-white text-base leading-none">
-          IDN Kayyisabd
-        </span>
-      </div>
-
-      <div className="flex items-center gap-2">
-       {/* Music toggle */}
-      <button
-        onClick={onToggleMusic}
-        aria-label={isMusicPlaying ? 'Mute music' : 'Play music'}
-        title={isMusicPlaying ? 'Mute music' : 'Play music'}
-        className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-50 hover:bg-blue-200 transition-colors"
-      >
-  {isMusicPlaying ? (
-    <Volume2 className="w-4 h-4 text-blue-700" />
-  ) : (
-    <VolumeX className="w-4 h-4 text-gray-500" />
-  )}
-</button>
-
-        {/* Theme toggle */}
-        <button
-          onClick={onToggleTheme}
-          aria-label="Toggle dark/light theme"
-          title="Toggle theme"
-          className="relative w-12 h-6 bg-blue-100 rounded-full p-0.5 transition-colors duration-300"
-        >
-          <div
-            className={`absolute w-5 h-5 bg-white rounded-full shadow-sm transition-transform duration-300 flex items-center justify-center ${
-              isDark ? 'translate-x-6' : 'translate-x-0'
-            } -translate-y-2.5`}
-          >
-            {isDark ? (
-              <Moon className="w-2.5 h-2.5 text-blue-600" />
-            ) : (
-              <Sun className="w-2.5 h-2.5 text-yellow-500" />
-            )}
-          </div>
-        </button> 
-      </div>
-    </header>
-  );
-};
+const Header: React.FC<HeaderProps> = ({ isDark, onToggleTheme, isMusicPlaying, onToggleMusic }) => (
+  <header className="flex items-center justify-between px-4 pb-4 pt-6">
+    <a href="#top" className="flex items-center gap-2.5" aria-label="IDN Kayyisabd home">
+      <img src="/images/logo.png" alt="" className="h-10 w-10 rounded-2xl object-cover shadow-sm ring-1 ring-black/5" />
+      <span className="text-sm font-bold tracking-tight text-slate-800 dark:text-white">IDN Kayyisabd</span>
+    </a>
+    <div className="flex items-center gap-2">
+      <button onClick={onToggleMusic} aria-label={isMusicPlaying ? 'Matikan musik' : 'Putar musik'} title={isMusicPlaying ? 'Matikan musik' : 'Putar musik'} className="flex h-10 w-10 items-center justify-center rounded-full border border-white/80 bg-white/75 text-slate-600 shadow-sm transition hover:-translate-y-0.5 hover:bg-white dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
+        {isMusicPlaying ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+      </button>
+      <button onClick={onToggleTheme} aria-label="Ganti tema" title="Ganti tema" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/80 bg-white/75 text-amber-500 shadow-sm transition hover:-translate-y-0.5 hover:bg-white dark:border-slate-700 dark:bg-slate-800 dark:text-teal-300">
+        {isDark ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+      </button>
+    </div>
+  </header>
+);
 
 export default Header;

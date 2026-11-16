@@ -1,19 +1,10 @@
-import React from 'react';
-import { Copyright } from 'lucide-react';
+﻿import React from 'react';
+import { Heart } from 'lucide-react';
 
-const Footer: React.FC = () => {
-  return (
-    <footer className="bg-black dark:bg-white-900 text-white dark:text-black py-4 px-4 rounded-t-3xl mx-4 mt-8 font-nova"> {/* ✅ Warna latar & teks disesuaikan */}
-      <div className="text-center">
-        <div className="flex items-center justify-center space-x-1 text-xs">
-          <Copyright className="w-3 h-3" />
-          <span>
-            2025 IDN Kayyisabd | All right Reserved
-          </span>
-        </div>
-      </div>
-    </footer>
-  );
-};
+const Footer: React.FC = () => (
+  <footer className="mx-3 mb-5 mt-8 rounded-2xl border border-white/80 bg-white/65 px-4 py-4 text-center text-xs text-slate-500 backdrop-blur dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-400">
+    <span>Made with <Heart className="mx-1 inline h-3 w-3 fill-rose-400 text-rose-400" /> by IDN Kayyisabd · © 2025</span>
+  </footer>
+);
 
 export default Footer;

@@ -1,42 +1,46 @@
-import React from 'react';
-import { ExternalLink } from 'lucide-react';
-import { motion } from "framer-motion";
+﻿import React from 'react';
+import { ArrowUpRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-const ProfileSection: React.FC = () => {
-  return (
-    <motion.div 
-    initial={{ opacity: 0, y: 20 }}
+const ProfileSection: React.FC = () => (
+  <motion.section
+    initial={{ opacity: 0, y: 18 }}
     animate={{ opacity: 1, y: 0 }}
-    transition={{ delay: 0.4 }}
-    className="bg-white rounded-2xl p-6 shadow-sm mb-6 mx-4 hover:shadow-md transition-shadow duration-300">
-      <div className="flex items-start space-x-4 mb-6">
-        <div className="w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0 group">
-          <img
-            src="/images/gambarku.jpg"
-            alt="Kayyis Abdullah Al Hadi"
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        </div>
-        <div className="flex-1">
-          <h1 className="text-xl font-bold text-gray-900 leading-tight mt-3 hover:text-gray-700 transition-colors duration-200">
-            Kayyis Abdullah<br />Al Hadi
-          </h1>
-        </div>
+    transition={{ delay: 0.15 }}
+    className="relative mx-3 mb-7 overflow-hidden rounded-[2rem] border border-white/80 bg-white/85 p-5 shadow-[0_18px_55px_-28px_rgba(15,118,110,0.35)] backdrop-blur dark:border-slate-700 dark:bg-slate-900/80 sm:p-6"
+  >
+    <div className="pointer-events-none absolute -right-12 -top-14 h-40 w-40 rounded-full bg-teal-100/70 blur-2xl dark:bg-teal-900/40" />
+
+    <div className="relative mb-6 flex items-center gap-4 sm:gap-5">
+      <div className="h-[4.5rem] w-[4.5rem] shrink-0 overflow-hidden rounded-[1.4rem] bg-teal-100 shadow-md ring-4 ring-white dark:ring-slate-800 sm:h-20 sm:w-20">
+        <img
+          src="/images/gambarku.jpg"
+          alt="Kayyis Abdullah Al Hadi"
+          className="h-full w-full object-cover"
+        />
       </div>
-      
-      <motion.a 
-            href="my-website.com"
-            target="_blank"
-            rel="nooponer noreferrer"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-      className="w-full bg-gray-900 text-white py-3.5 px-4 rounded-2xl font-medium flex items-center justify-center space-x-2 hover:bg-gray-800 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
-        <ExternalLink className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-        <span>Personal Website</span>
-      </motion.a>
-    </motion.div>
-  );
-};
+      <div className="min-w-0">
+        <h1 className="text-xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-white sm:text-2xl">
+          Kayyis Abdullah<br />Al Hadi
+        </h1>
+        <p className="mt-2 text-sm font-medium leading-relaxed text-slate-600 dark:text-slate-300">
+          UI/UX enthusiast <span className="text-teal-600 dark:text-teal-400">·</span> creative developer
+        </p>
+      </div>
+    </div>
+
+    <motion.a
+      href="https://portfolio-vercel-preview.vercel.app/"
+      target="_blank"
+      rel="noopener noreferrer"
+      whileHover={{ y: -2 }}
+      whileTap={{ scale: 0.98 }}
+      className="relative flex w-full items-center justify-between rounded-2xl bg-slate-900 px-5 py-3.5 text-sm font-semibold text-white shadow-lg shadow-slate-900/10 transition hover:bg-teal-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 dark:bg-teal-600 dark:hover:bg-teal-500 dark:focus-visible:ring-offset-slate-900"
+    >
+      <span>Jelajahi personal website</span>
+      <ArrowUpRight className="h-4 w-4" />
+    </motion.a>
+  </motion.section>
+);
 
 export default ProfileSection;

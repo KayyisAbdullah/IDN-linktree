@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+﻿import { useState, useRef, useEffect } from 'react';
 import Header from './components/Header';
 import ProfileSection from './components/ProfileSection';
 import IntroSection from './components/IntroSection';
@@ -10,99 +10,69 @@ import CustomCursor from './components/CustomCursor';
 
 function App() {
   const [isDark, setIsDark] = useState(false);
-  const [isMusicPlaying, setIsMusicPlaying] = useState(false); // default: tidak main
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [showAudioConsent, setShowAudioConsent] = useState(true);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const toggleTheme = () => setIsDark(!isDark);
 
   const toggleMusic = () => {
-    if (audioRef.current) {
-      if (isMusicPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
-      }
-      setIsMusicPlaying(!isMusicPlaying);
-    }
+    if (!audioRef.current) return;
+    if (isMusicPlaying) audioRef.current.pause();
+    else void audioRef.current.play();
+    setIsMusicPlaying(!isMusicPlaying);
   };
 
   const handleAudioConsent = async () => {
     try {
-      if (audioRef.current) {
-        audioRef.current.volume = 0.4;
-        audioRef.current.loop = true;
-        await audioRef.current.play();
-        setIsMusicPlaying(true);
-        setShowAudioConsent(false);
-        localStorage.setItem('audioConsent', 'true');
-      }
+      if (!audioRef.current) return;
+      audioRef.current.volume = 0.4;
+      audioRef.current.loop = true;
+      await audioRef.current.play();
+      setIsMusicPlaying(true);
+      setShowAudioConsent(false);
+      localStorage.setItem('audioConsent', 'true');
     } catch (err) {
-      console.log('🔒 Gagal memutar musik:', err);
+      console.log('Gagal memutar musik:', err);
     }
   };
 
   useEffect(() => {
-    const audioAllowed = localStorage.getItem('audioConsent');
-    if (audioAllowed === 'true') {
-      handleAudioConsent();
-    }
+    if (localStorage.getItem('audioConsent') === 'true') void handleAudioConsent();
   }, []);
 
   return (
-    <div
-      className={`min-h-screen transition-colors duration-300 ${
-        isDark ? 'bg-gray-900 text-white' : 'bg-teal-50'
-      }`}
-    >
+    <div className={`relative min-h-screen overflow-hidden transition-colors duration-300 ${isDark ? 'dark bg-slate-950 text-white' : 'bg-[#f2fbf8] text-slate-900'}`}>
+      <div className="pointer-events-none absolute inset-0 ambient-breathe" />
       <MouseParticles />
       <CustomCursor />
-      {/* 🔔 Audio Consent Modal */}
       {showAudioConsent && (
-        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 text-center shadow-lg max-w-xs">
-            <p className="text-lg font-medium text-gray-800 mb-4">
-              🎧 Aktifkan musik latar?
-            </p>
-            <button
-              onClick={handleAudioConsent}
-              className="px-4 py-2 bg-teal-500 text-white rounded hover:bg-teal-600 transition"
-            >
-              Izinkan
-            </button>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-xs rounded-3xl border border-white/60 bg-white p-7 text-center shadow-2xl">
+            <p className="mb-2 text-lg font-bold text-slate-900">Musik latar</p>
+            <p className="mb-5 text-sm leading-relaxed text-slate-500">Ingin mendengarkan musik saat menjelajahi halaman?</p>
+            <div className="flex gap-2">
+              <button onClick={() => setShowAudioConsent(false)} className="flex-1 rounded-xl bg-slate-100 px-4 py-3 text-sm font-semibold text-slate-600 transition hover:bg-slate-200">Nanti</button>
+              <button onClick={handleAudioConsent} className="flex-1 rounded-xl bg-teal-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-teal-700">Putar musik</button>
+            </div>
           </div>
         </div>
       )}
-
-      {/* 🧱 Main Layout */}
-      <div className="max-w-sm mx-auto">
-        <Header
-          isDark={isDark}
-          onToggleTheme={toggleTheme}
-          isMusicPlaying={isMusicPlaying}
-          onToggleMusic={toggleMusic}
-        />
-
-        <main className="pb-4">
+      <div className="relative mx-auto w-full max-w-lg px-2 sm:px-4">
+        <Header isDark={isDark} onToggleTheme={toggleTheme} isMusicPlaying={isMusicPlaying} onToggleMusic={toggleMusic} />
+        <main className="pb-8">
           <ProfileSection />
           <IntroSection />
           <SocialLinks />
           <ContentLinks />
         </main>
-
         <Footer />
       </div>
-
-      {/* 🎵 Audio Element */}
-      <audio
-        ref={audioRef}
-        src="/audio/audio1.mp3"
-        loop
-        preload="auto"
-        onError={() => console.log("❌ Audio gagal dimuat")}
-      />
+      <audio ref={audioRef} src="/audio/audio1.mp3" loop preload="auto" onError={() => console.log('Audio gagal dimuat')} />
     </div>
   );
 }
 
 export default App;
+
+
